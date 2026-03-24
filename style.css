@@ -1,3 +1,49 @@
-.darkslateblue {
-    color:darkslateblue
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image:linear-gradient(to bottom, #10162F 0%, #10162F 20%, #2A2F6B 20%, #2A2F6B 50%,#10162F 50%,#10162F 80%, #2A2F6B 80%, #2A2F6B 150% );
+    font-family: "Inter", sans-serif;
+  }
+
+.nearwhite{
+    color:#F5F1FF
+}
+
+li {
+  padding: 2px 0;
+  width: 299px;
+  list-style: none;
+  text-align: center;
+  background-color:#F5F1FF;
+}
+
+li:hover {
+  transition: background-color 0.3s;
+  background-color:greenyellow
+}
+
+/*li p {
+  float: bottom;  
+  width: 75px;  
+  margin: 0 0 0 0;
+}*/
+
+/*
+h1 {
+    font-family: "Space Grotesk";
+}
+    em unité pour s'adapter à la taille de l'écran
+    Hover + box-shadow: 10px 10px 5px grey; pour faire une ombre
+    Transition: 0.3s; pour faire une transition douce
+*/
+
+ul{
+  display: flex; /*Permet d'utiliser les parents pour gérer les enfants*/
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
