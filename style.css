@@ -4,8 +4,15 @@
     box-sizing: border-box;
 }
 
+h1, h4 {
+    font-family: "Space Grotesk", sans-serif;
+    color:#F5F1FF;
+    text-align: center;
+    margin: 0 50rem 0 0;
+}
+
 body {
-    background-image:linear-gradient(to bottom, #10162F 0%, #10162F 20%, #2A2F6B 20%, #2A2F6B 50%,#10162F 50%,#10162F 80%, #2A2F6B 80%, #2A2F6B 150% );
+    background-color:#2A2F6B; /*#10162F*/
     font-family: "Inter", sans-serif;
   }
 
@@ -14,24 +21,30 @@ body {
 }
 
 li.gallery {
-  padding: 2px 0;
   width: 299px;
   list-style: none;
   text-align: center;
   background-color:#F5F1FF;
 }
 
-li.gallery:hover {
-  transition: background-color 0.3s;
-  background-color:greenyellow
+.tooltiptext {
+  visibility: hidden;
+  opacity: 0.8;
+  width: 299px;
+  background-color: #10162F;
+  text-align: center;
+  margin-top: -168px;
 }
 
-/*li p {
-  float: bottom;  
-  width: 75px;  
-  margin: 0 0 0 0;
-  color:#F5F1FF
-}*/
+img.normal {
+  width: 299px;
+  height: 168px;
+}
+
+.gallery a:hover .tooltiptext { /*je ne comprenais pas pourquoi simplement .tooltiptext:hover ne suffisait pas, en demandant à l'IA, 
+  j'ai compris qu'un hover ne détectait pas un objet en visibility hidden. J'ai donc opté pour la solution proposée.*/
+  transition: visibility 0.3s;
+  visibility: visible;}
 
 /*
 h1 {
@@ -46,15 +59,24 @@ ul.gallery {
   display: flex; /*Permet d'utiliser les parents pour gérer les enfants*/
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around
+  justify-content: space-around;
 }
 
 .menu {
     display: flex;                /* Transformation en flexbox */
+    margin: 0 50rem 0 0;
     padding:0;                    /* Suppression des marges internes */
     background-color: #10162F;       /* Ajout de la couleur d'arrière-plan */
     justify-content: space-around;/* Alignements des liens dans le menu */
-    margin: 0 50rem 0 0;
+}
+
+.menuinvisible {
+    display: flex;                /* Transformation en flexbox */
+    margin: 0 0 0 50rem;
+    padding:0;                    /* Suppression des marges internes */
+    background-color: #10162F;       /* Ajout de la couleur d'arrière-plan */
+    justify-content: space-around;/* Alignements des liens dans le menu */
+    
 
 }
 .menu li {
@@ -62,7 +84,7 @@ ul.gallery {
   
 }
 .menu a {
-    display:block;                /* Transformation en block */
+    display:inline-block;                /* Transformation en block */
     min-width: 120px;             /* Largeur minimale des liens */   
     
     margin: 0.5rem;               /* Marges externes */
