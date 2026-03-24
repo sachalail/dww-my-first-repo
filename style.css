@@ -8,7 +8,12 @@ h1, h4 {
     font-family: "Space Grotesk", sans-serif;
     color:#F5F1FF;
     text-align: center;
-    margin: 0 50rem 0 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 body {
@@ -21,31 +26,52 @@ body {
 }
 
 li.gallery {
-  width: 299px;
+  width: 20rem;
+  min-height: 21rem;
   list-style: none;
   text-align: center;
-  background-color:#F5F1FF;
+  background-color: #2A2F6B;
 }
 
 .tooltiptext {
   visibility: hidden;
+  text-decoration: none;
   opacity: 0.8;
-  width: 299px;
+  width: 20rem;
   background-color: #10162F;
+  color: #F5F1FF;
   text-align: center;
-  margin-top: -168px;
+  margin-top: -20rem;
+  max-height: 20rem;
+  overflow: auto;
 }
+
+/*.tooltipcategorie {
+  visibility: hidden;
+  opacity: 0.8; 
+  background-color: #10162F;
+}*/
+
 
 img.normal {
-  width: 299px;
-  height: 168px;
+  width: 20rem;
+  height: 20rem;
 }
 
-.gallery a:hover .tooltiptext { /*je ne comprenais pas pourquoi simplement .tooltiptext:hover ne suffisait pas, en demandant à l'IA, 
+.gallery li:hover .tooltiptext { /*je ne comprenais pas pourquoi simplement .tooltiptext:hover ne suffisait pas, en demandant à l'IA, 
   j'ai compris qu'un hover ne détectait pas un objet en visibility hidden. J'ai donc opté pour la solution proposée.*/
-  transition: visibility 0.3s;
   visibility: visible;}
 
+.menu a:hover{
+  background-color: #10162F;
+  color:#F5F1FF
+  
+}
+.menu a:active{
+  background-color: #F5F1FF;
+  color:#10162F;
+  visibility: visible;
+}
 /*
 h1 {
     font-family: "Space Grotesk";
@@ -59,36 +85,32 @@ ul.gallery {
   display: flex; /*Permet d'utiliser les parents pour gérer les enfants*/
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly; /*Permet de gérer les espaces entre les éléments*/
 }
 
 .menu {
     display: flex;                /* Transformation en flexbox */
-    margin: 0 50rem 0 0;
     padding:0;                    /* Suppression des marges internes */
+    margin: 1rem 0;
     background-color: #10162F;       /* Ajout de la couleur d'arrière-plan */
-    justify-content: space-around;/* Alignements des liens dans le menu */
+    justify-content: space-evenly;/* Alignements des liens dans le menu */                 /* Centrage du contenu */
+    min-height: 5rem;
 }
-
-.menuinvisible {
-    display: flex;                /* Transformation en flexbox */
-    margin: 0 0 0 50rem;
-    padding:0;                    /* Suppression des marges internes */
-    background-color: #10162F;       /* Ajout de la couleur d'arrière-plan */
-    justify-content: space-around;/* Alignements des liens dans le menu */
     
-
-}
 .menu li {
     list-style-type: none ;       /* Suppression des puces */
+}
+
+.menu li.invisible{
+    list-style-type: none ;       /* Suppression des puces */
+    visibility: hidden;          /* Rendre les éléments invisibles */
   
 }
 .menu a {
-    display:inline-block;                /* Transformation en block */
-    min-width: 120px;             /* Largeur minimale des liens */   
-    
-    margin: 0.5rem;               /* Marges externes */
-    padding: 0.4rem 0;            /* Marges internes */
+    display:block;                /* Transformation en block */
+    min-width: 20rem;             /* Largeur minimale des liens */    
+    margin: 1rem 0;  
+    padding: 2rem 0;            /* Marges internes */
     text-align: center;           /* Centrage du texte */   
     background-color: #2A2F6B;    /* Arrière-plan */
     color: #F5F1FF;                  /* Couleur du texte */
