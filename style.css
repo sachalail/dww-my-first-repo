@@ -4,88 +4,138 @@
     box-sizing: border-box;
 }
 
-h1, h4 {
-    font-family: "Space Grotesk", sans-serif;
-    color:#F5F1FF;
-    text-align: center;
-}
-
-.header {
+.header {       /*Je fais un conteneur pour mon haut de page, que je range hors du body.*/
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 body {
-    background-color:#2A2F6B; /*#10162F*/
-    font-family: "Inter", sans-serif;
+    background-color:#2A2F6B; 
+    font-family: "Inter", sans-serif; /*Nous avons définis ensemble une police*/
   }
 
-.nearwhite{
-    color:#F5F1FF
+h1, h4 { /*Je définis la police couleur et alignement que je souhaite pour mon titre et mon sous-titre, j'ai testé la formulation h1, h4 intuitivement*/
+    font-family: "Space Grotesk", sans-serif; /*Je voulais utiliser une police qui n'est pas celle par défaut*/
+    color:#F5F1FF;
+    text-align: center;
 }
 
-li.gallery {
+img.normal { /*Je souhaitais normaliser mes images, j'ai été voir rapidement comment faire sur les forums, 
+    et j'ai pris cette solution simple.
+    Je note que j'ai choisi 20 rem comme unité car je voulais 4 images par ligne, peu importe la taille des images.
+    J'ai aussi choisi 20 rem pour mon menu constitué de 4 élements, pour que le menu et les images soient alignés.
+    Il faudra modifier la hauteur pour reprendre le ratio entre hauteur et largeur s'il est déjà homogénéisé dans le set d'images donné.*/
   width: 20rem;
-  min-height: 21rem;
+  height: 20rem;
+}
+
+ul.gallery { /*C'est une liste qui contiendra des images (rattachées à un lien), 
+    ainsi que des textes apparaissant au survol de chaque image (tooltip)*/
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /*ou space around, les deux fonctionnent bien*/
+}
+
+li.gallery { /*c'est un élément de la liste ul.gallery, */
+  width: 20rem;
+  min-height: 21rem; /*J'avais un problème, les images de la ligne d'en dessous s'affichait selon la hauteur du tooltip, 
+  car mon tooltip pouvait être plus grand que mes images. J'ai donc fixé une hauteur minimale ici et une hauteur maximale sur le tooltip.
+  La hauteur minimale est à 21rem pour avoir un espace entre les deux lignes d'images.
+  J'ai utilisé l'IA (chat sur VS code) pour comprendre ce problème de superposition entre les lignes.
+  Prompt: Pourquoi la distance entre deux lignes dans ul.gallery (wrap activé) est assurée par mes textes en tooltip et non par mes images ?
+ */
   list-style: none;
   text-align: center;
   background-color: #2A2F6B;
 }
 
-.tooltiptext {
+.tooltiptext { /*Tooltiptext s'affichant au dessus des images, réalisé à l'aide d'un guide sur w3schools.com: "CSS Create a Basic Tooltip"*/
   visibility: hidden;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0.9;
   width: 20rem;
-  background-color: #10162F;
+  background-color: #2A2F6B;
   color: #F5F1FF;
-  text-align: center;
-  margin-top: -20rem;
-  max-height: 20rem;
+  text-align: left;
+  margin-top: -20rem;/*Cette ligne est là pour que le texte superpose l'élement contenant l'image.*/
+  max-height: 20rem;/*Cf l'explication ci-dessus, hauteur maximale du tooltip*/
   overflow: auto;
-}
-
-.tooltipcat {
-  visibility: hidden;
-  text-decoration: none;
-  width: 20rem;
-  background-color: #10162F;
-  position: absolute;
-  color: #F5F1FF;
-  text-align: center;
-}
-
-ul.menu li:hover > ul.tooltipcat{
-  visibility: visible;
-}
-
-/*.tooltipcategorie {
-  visibility: hidden;
-  opacity: 0.8; 
-  background-color: #10162F;
-}*/
-
-
-img.normal {
-  width: 20rem;
-  height: 20rem;
 }
 
 .gallery li:hover .tooltiptext { /*je ne comprenais pas pourquoi simplement .tooltiptext:hover ne suffisait pas, en demandant à l'IA, 
   j'ai compris qu'un hover ne détectait pas un objet en visibility hidden. J'ai donc opté pour la solution proposée.*/
+  /*Prompt n°1: pourquoi ne vois-je pas mon tooltiptext au survol sur l'image de Suzume ?
+  Prompt n°2: je ne comprends pas la notation .gallery a:hover .tooltiptext, est elle obligatoire ? pourquoi simplement.tooltiptext ne suffit pas ? 
+  */
   visibility: visible;}
 
-.menu a:hover{
+.menu {
+    display: flex;       
+    flex-wrap: wrap; /*Vous m'en avez parler pendant la visio pour que cela ne se désorganise pas sur plusieurs lignes*/                    
+    margin: 1rem 0; /*j'ai fait pas mal de tests avec margin & padding pour trouver ce que je voulais.*/
+    background-color: #10162F;      
+    justify-content: space-evenly;
+    min-height: 5rem; /*J'ai fixé une hauteur minimale afin de m'assurer de la visibilité de mon menu*/
+}
+    
+.menu li {
+    list-style-type: none ;       
+}
+
+.menu li a {
+    display:inline-flex; /*Cela me permet de conserver tous les éléments d'une case du menu sur une seule ligne,
+    donc d'aligner mon icone de menu déroulant à "catégorie"*/
+    justify-content: center;              
+    min-width: 20rem;              
+    margin: 1rem 0;  
+    padding: 2rem 0; /*Je souhaitais que les éléments de mon menu de prennent pas toute la hauteur du menu, il fallait donc une marge interne*/
+    text-align: center;   
+    background-color: #2A2F6B;   
+    color: #F5F1FF;           
+    text-decoration: none;/*Cela m'évite que mon texte soit souligné dans le menu, étant donné l'usage de liens (a).*/
+    border: 1px solid #F5F1FF;
+    border-radius: 4px; /*Ces deux lignes ont été proposées en autocomplétion et pas retouchées étant donné qu'elles m'allaient.*/
+}
+
+.tooltipcat {/*C'est un copier-coller de tooltiptext ajusté*/
+  visibility: hidden;
+  text-decoration: none;
+  width: 20rem;
+  background-color: #10162F;
+  position: absolute;/*J'utilise cette solution remarquée pendant mes autres recherches,
+   pour éviter que mon tooltip étende le conteneur pour rien.*/
+  color: #F5F1FF;
+  text-align: center;
+}
+
+ul.menu li:hover ul.tooltipcat{
+  visibility: visible;
+}
+
+.menu li a:hover{
   background-color: #10162F;
   color:#F5F1FF
   
 }
-.menu a:active{
+.menu li a:active{ /*J'ai été chercher en ligne "clique html css" et je suis tombé sur un article MDN Web Docs: active - CSS.*/
   background-color: #F5F1FF;
   color:#10162F;
   visibility: visible;
 }
+
+i { 
+  color: #F5F1FF;
+}
+
+footer {
+  background-color: #10162F;
+  color: #F5F1FF;
+  text-align: center;
+  padding: 2rem;
+}
+/* quelques notes de notre discussion */
 /*
 h1 {
     font-family: "Space Grotesk";
@@ -94,41 +144,3 @@ h1 {
     Hover + box-shadow: 10px 10px 5px grey; pour faire une ombre
     Transition: 0.3s; pour faire une transition douce
 */
-
-ul.gallery {
-  display: flex; /*Permet d'utiliser les parents pour gérer les enfants*/
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly; /*Permet de gérer les espaces entre les éléments*/
-}
-
-.menu {
-    display: flex;                /* Transformation en flexbox */
-    padding:0;                    /* Suppression des marges internes */
-    margin: 1rem 0;
-    background-color: #10162F;       /* Ajout de la couleur d'arrière-plan */
-    justify-content: space-evenly;/* Alignements des liens dans le menu */                 /* Centrage du contenu */
-    min-height: 5rem;
-}
-    
-.menu li {
-    list-style-type: none ;       /* Suppression des puces */
-}
-
-.menu li.invisible{
-    list-style-type: none ;       /* Suppression des puces */
-    visibility: hidden;          /* Rendre les éléments invisibles */
-  
-}
-.menu a {
-    display:block;                /* Transformation en block */
-    min-width: 20rem;             /* Largeur minimale des liens */    
-    margin: 1rem 0;  
-    padding: 2rem 0;            /* Marges internes */
-    text-align: center;           /* Centrage du texte */   
-    background-color: #2A2F6B;    /* Arrière-plan */
-    color: #F5F1FF;                  /* Couleur du texte */
-    text-decoration: none;        /* Suppression du soulignement */
-    border: 1px solid #F5F1FF;       /* Ajout d'une bordure */
-    border-radius: 4px;           /* Arrondis des bordures */
-}
