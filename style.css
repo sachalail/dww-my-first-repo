@@ -46,6 +46,20 @@ li.gallery {
   overflow: auto;
 }
 
+.tooltipcat {
+  visibility: hidden;
+  text-decoration: none;
+  width: 20rem;
+  background-color: #10162F;
+  position: absolute;
+  color: #F5F1FF;
+  text-align: center;
+}
+
+ul.menu li:hover > ul.tooltipcat{
+  visibility: visible;
+}
+
 /*.tooltipcategorie {
   visibility: hidden;
   opacity: 0.8; 
